@@ -10,11 +10,6 @@ Run it :)
 ```
 $ python3 PoC.py 172.17.17.17
 172.17.17.17
-User: admin
-Pass:
-
-User: admin
-Pass:
 
 User: admin
 Pass: Th3P4ssWord
