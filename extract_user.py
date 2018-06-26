@@ -7,10 +7,21 @@ def decrypt_password(user, pass_enc):
 
     passw = ""
     for i in range(0, len(pass_enc)):
-        passw += chr(pass_enc[i] ^ key[i])
+        passw += chr(pass_enc[i] ^ key[i % len(key)])
     
     return passw.split("\x00")[0]
 
+def extract_user_pass_from_entry(entry):
+    user_data = entry.split(b"\x01\x00\x00\x21")[1]
+    pass_data = entry.split(b"\x11\x00\x00\x21")[1]
+
+    user_len = user_data[0]
+    pass_len = pass_data[0]
+
+    username = user_data[1:1 + user_len]
+    password = pass_data[1:1 + pass_len]
+
+    return username, password
 
 def get_pair(data):
 
@@ -18,21 +29,20 @@ def get_pair(data):
 
     entries = data.split(b"M2")[1:]
     for entry in entries:
-        user_len = entry.split(b"\x01\x00\x00\x21")[1][0]
-        pass_len = entry.split(b"\x11\x00\x00\x21")[1][0]
+        try:
+            user, pass_encrypted = extract_user_pass_from_entry(entry)
+        except:
+            continue
 
-        user     = entry.split(b"\x01\x00\x00\x21")[1][1:1 + user_len]
-        pass_enc = entry.split(b"\x11\x00\x00\x21")[1][1:1 + pass_len]
-
-        passw = decrypt_password(user, pass_enc)
+        pass_plain = decrypt_password(user, pass_encrypted)
         user  = user.decode("ascii")
 
-        user_list.append((user, passw))
+        user_list.append((user, pass_plain))
 
     return user_list
 
-def get_from_network(pload):
-    user_pass = get_pair(pload)
+def dump(data):
+    user_pass = get_pair(data)
     for u, p in user_pass:
         print("User:", u)
         print("Pass:", p)
@@ -40,12 +50,13 @@ def get_from_network(pload):
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
-        user_file = open(sys.argv[1], "rb").read()
-        user_pass = get_pair(user_file)
-        for u, p in user_pass:
-            print("User:", u)
-            print("Pass:", p)
-            print()
+        if sys.argv[1] == "-":
+            user_file = sys.stdin.buffer.read()
+        else:
+            user_file = open(sys.argv[1], "rb").read()
+        dump(user_file)
+         
     else:
         print("Usage:")
-        print(sys.argv[0], "user.dat")
+        print("\tFrom file: \t", sys.argv[0], "user.dat")
+        print("\tFrom stdin:\t", sys.argv[0], "-")
