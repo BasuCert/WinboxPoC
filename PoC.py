@@ -2,7 +2,7 @@
 
 import socket
 import sys
-from extract_user import get_from_network
+from extract_user import dump
 
 
 a = [0x68, 0x01, 0x00, 0x66, 0x4d, 0x32, 0x05, 0x00,
@@ -59,4 +59,4 @@ if __name__ == "__main__":
 
      #Get results
      print(ip)
-     get_from_network(d[55:])
+     dump(d[55:])
