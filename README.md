@@ -7,6 +7,9 @@ https://n0p.me/winbox-bug-dissection/
 
 
 ## How to use
+
+Note that this script will NOT run with Python2.x. Use only Python 3+
+
 Winbox (TCP/IP)
 ```
 $ python3 WinboxExploit.py 172.17.17.17
