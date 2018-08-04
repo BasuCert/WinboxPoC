@@ -48,4 +48,5 @@ all versions from 6.29 (release date: 2015/28/05) to 6.42 (release date 2018/04/
 ip firewall filter add chain=input in-interface=wan protocol=tcp dst-port=8291 action=drop
 ```
 
-Enjoy!
+## Copyright
+ - Sponsered by Iran's CERTCC(https://certcc.ir). All rights resereved.
