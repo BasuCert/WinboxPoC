@@ -55,7 +55,7 @@ Pass: Th3P4ssWord
 ```
 
 ## Vulnerable Versions
-All RouterOS versions from 6.29 (release date: 2015-05-28) to 6.42 (release date: 2018-04-20) are vulnerable to this exploit.
+All RouterOS versions from 2015-05-28 to 2018-04-20 are vulnerable to this exploit.
 
 Mikrotik devices running RouterOS versions:
 
