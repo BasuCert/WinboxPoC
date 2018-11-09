@@ -74,7 +74,7 @@ For more information see: https://blog.mikrotik.com/security/winbox-vulnerabilit
 ```
 - You may use some Filter Rules (ACL) to deny external access to the WinBox service:
 ```
-ip firewall filter add chain=input in-interface=wan protocol=tcp dst-port=8291 action=drop
+/ip firewall filter add chain=input in-interface=wan protocol=tcp dst-port=8291 action=drop
 ```
 - Limiting access to the mac-winbox service can be done by specifing allowed interfaces:
 ```
