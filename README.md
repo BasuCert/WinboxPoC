@@ -15,7 +15,7 @@ The script is simple used with simple arguments in the commandline.
 #### WinBox (TCP/IP)
 Exploit the vulnerability and read the password.
 ```
-python3 WinboxExploit.py <ip-address>
+python3 WinboxExploit.py <ip-address> (port)
 ```
 Example:
 ```
