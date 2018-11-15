@@ -15,7 +15,7 @@ The script is simple used with simple arguments in the commandline.
 #### WinBox (TCP/IP)
 Exploit the vulnerability and read the password.
 ```
-python3 WinboxExploit.py IP-ADDRESS [PORT]
+python3 WinboxExploit.py <IP-ADDRESS> [PORT]
 ```
 Example:
 ```
@@ -45,7 +45,7 @@ Looking for Mikrotik devices (MAC servers)
 
 Exploit the vulnerability and read the password.
 ```
-python3 MACServerExploit.py MAC-ADDRESS
+python3 MACServerExploit.py <MAC-ADDRESS>
 ```
 Example:
 ```
