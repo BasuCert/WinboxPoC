@@ -35,7 +35,7 @@ def get_pair(data):
             continue
 
         pass_plain = decrypt_password(user, pass_encrypted)
-        user  = user.decode("ascii")
+        user = user.decode("utf_8", "backslashreplace")
 
         user_list.append((user, pass_plain))
 
